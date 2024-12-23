@@ -5,6 +5,7 @@ import {
   StyleSheet,
   View,
   GestureResponderHandlers,
+  Text,
 } from 'react-native';
 import {Volume} from './Volume';
 import {Back} from './Back';
@@ -14,6 +15,7 @@ import type {VideoAnimations} from '../types';
 
 interface TopControlProps {
   showControls: boolean;
+  name: string;
   panHandlers: GestureResponderHandlers;
   animations: VideoAnimations;
   disableBack: boolean;
@@ -22,6 +24,7 @@ interface TopControlProps {
   volumeTrackWidth: number;
   volumePosition: number;
   onBack: () => void;
+  onSetting: () => void;
   resetControlTimeout: () => void;
 }
 
@@ -36,7 +39,9 @@ export const TopControls = memo(
     volumePosition,
     volumeTrackWidth,
     onBack,
+    onSetting,
     resetControlTimeout,
+    name,
   }: TopControlProps) => {
     const backControl = disableBack ? (
       <NullControl />
@@ -68,7 +73,15 @@ export const TopControls = memo(
         >
           <SafeAreaView style={_styles.topControlGroup}>
             {backControl}
-            <View style={_styles.pullRight}>{volumeControl}</View>
+            <View style={_styles.pullRight}>
+              {volumeControl}
+              <Text
+                style={{color: 'white', marginLeft: 10}}
+                onPress={onSetting}
+              >
+                {name}
+              </Text>
+            </View>
           </SafeAreaView>
         </ImageBackground>
       </AnimatedView>
