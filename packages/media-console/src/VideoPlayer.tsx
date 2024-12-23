@@ -53,6 +53,8 @@ const AnimatedVideoPlayer = (
     onExitFullscreen = () => {},
     onHideControls = () => {},
     onShowControls = () => {},
+    onSetting = () => {},
+    name ="",
     onPause,
     onPlay,
     onLoad,
@@ -213,6 +215,7 @@ const AnimatedVideoPlayer = (
     onEnd: _onEnd,
     onScreenTouch: _onScreenTouch,
     onEnterFullscreen,
+    onSetting:onSetting,
     onExitFullscreen,
     onShowControls,
     onHideControls,
@@ -432,6 +435,8 @@ const AnimatedVideoPlayer = (
               onBack={events.onBack}
               resetControlTimeout={resetControlTimeout}
               showControls={showControls}
+              onSetting={events.onSetting}
+              name={name}
             />
             <PlayPause
               animations={animations}
